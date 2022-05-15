@@ -27,19 +27,18 @@ public:
     void drawPoints(QPainter *painter);
     void setPoint();
     void removePoints();
-private:
-        int startWidth;
-        int startHeight;
-        unsigned int numOfStartPoints;
-        unsigned int pointSize;
-        std::vector<std::pair<int, int>> points;
-        std::vector<std::pair<int, int>> startPoints;
-protected:
-        void paintEvent(QPaintEvent*) override;
-        void mousePressEvent(QMouseEvent *e) override;
-signals:
-        void mousePressed(const QPoint&);
+    void connectPoints(QPainter *painter);
 
+private:
+    unsigned int numOfStartPoints;
+    unsigned int pointSize;
+    std::vector<QPoint> points;
+protected:
+    void paintEvent(QPaintEvent*) override;
+    void mousePressEvent(QMouseEvent *e) override;
+signals:
+    void mousePressed(const QPoint&);
+    void numOfPointsChange();
 };
 
 #endif // GRAPH_H

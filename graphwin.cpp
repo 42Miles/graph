@@ -18,12 +18,20 @@ GraphWin::GraphWin(QWidget *parent)
     VLayout->addLayout(HBottomLayout);
 
     pointsLabel = new QLabel;
+    numOfPointsLabel = new QLabel;
 
-    pointsLabel->setText("number of points: " + QString::number(graph->getNumOfPoints()));
+    pointsLabel->setText("number of points:");
     pointsLabel->setStyleSheet("color: #FFFFFF");
     pointsLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
 
+    connect(graph, &Graph::numOfPointsChange, this, &GraphWin::setNumOfPoints);
+
+    numOfPointsLabel->setStyleSheet("color: #FFFFFF");
+    numOfPointsLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
+
     HTopLayout->addWidget(pointsLabel);
+    HTopLayout->addWidget(numOfPointsLabel);
+    HTopLayout->addStretch();
 
     clear.setText("Clear");
     close.setText("Close");
@@ -41,9 +49,10 @@ GraphWin::GraphWin(QWidget *parent)
 GraphWin::~GraphWin()
 {
     delete VLayout;
-    delete pointsLabel;
     delete HTopLayout;
     delete HBottomLayout;
+    delete pointsLabel;
+    delete numOfPointsLabel;
     delete graph;
 }
 
@@ -54,6 +63,11 @@ void GraphWin::closeSlot()
 void GraphWin::clearSlot()
 {
     graph->removePoints();
+}
+
+void GraphWin::setNumOfPoints()
+{
+    numOfPointsLabel->setText(QString::number(graph->getNumOfPoints()));
 }
 
 
