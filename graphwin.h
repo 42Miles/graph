@@ -1,10 +1,14 @@
 #ifndef GRAPHWIN_H
 #define GRAPHWIN_H
 
+#include <QApplication>
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QPushButton>
+#include <QObject>
+#include <graph.h>
 
 class GraphWin : public QWidget
 {
@@ -14,10 +18,16 @@ public:
     ~GraphWin();
 private:
     QLabel *pointsLabel;
-    QLabel *numOfPoints;
     QVBoxLayout *VLayout;
+    QHBoxLayout *HTopLayout;
+    QHBoxLayout *HBottomLayout;
+    Graph *graph;
 
-signals:
+    QPushButton clear;
+    QPushButton close;
+private slots:
+    void closeSlot();
+    void clearSlot();
 
 };
 
