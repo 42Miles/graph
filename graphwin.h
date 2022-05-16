@@ -15,6 +15,7 @@ public:
     explicit GraphWin(QWidget *parent = nullptr);
     ~GraphWin();
 
+    void setLayouts();
 public slots:
     void setNumOfPoints();
 private:

@@ -11,14 +11,10 @@ GraphWin::GraphWin(QWidget *parent)
     HTopLayout = new QHBoxLayout();
     HBottomLayout = new QHBoxLayout();
     graph = new Graph();
-
-    setLayout(VLayout);
-    VLayout->addLayout(HTopLayout);
-    VLayout->addWidget(graph);
-    VLayout->addLayout(HBottomLayout);
-
     pointsLabel = new QLabel;
     numOfPointsLabel = new QLabel;
+
+    setLayouts();
 
     pointsLabel->setText("number of points:");
     pointsLabel->setStyleSheet("color: #FFFFFF");
@@ -63,6 +59,14 @@ void GraphWin::closeSlot()
 void GraphWin::clearSlot()
 {
     graph->removePoints();
+}
+
+void GraphWin::setLayouts()
+{
+    setLayout(VLayout);
+    VLayout->addLayout(HTopLayout);
+    VLayout->addWidget(graph);
+    VLayout->addLayout(HBottomLayout);
 }
 
 void GraphWin::setNumOfPoints()
